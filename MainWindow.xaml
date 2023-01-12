@@ -3,10 +3,75 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:library="clr-namespace:DemoWPF.Library;assembly=DemoWPF.Library"
         xmlns:local="clr-namespace:DemoWPF"
+        xmlns:converters="clr-namespace:DemoWPF.Converters"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Window.Resources>
+        <converters:NegateConverter x:Key="myNegateBooleanConverter"></converters:NegateConverter>
+    </Window.Resources>
+    
+    <StackPanel Name="myStackPanel" VerticalAlignment="Center">
 
-    </Grid>
+        <!--<StackPanel.Resources>
+            <library:MyData x:Key="myDataSource"></library:MyData>
+        </StackPanel.Resources>-->
+        
+        <!--<Button Click="Button_Click" Content="Get Data" Background="{Binding 
+            Source={StaticResource myDataSource }, Path=ColorName}"  ></Button>
+
+        <Button Background="{Binding ColorName}" Content="OK"></Button>
+        
+        <Label x:Name="myLabel"></Label>
+        <TextBox x:Name="myTextBox" Width="200"></TextBox>
+        <TextBlock Text="{Binding ElementName=myTextBox, Path=Text}"></TextBlock>
+
+        <Slider x:Name="mySlider" Minimum="0" Maximum="360"></Slider>
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"  
+                   Text="{Binding ElementName=mySlider, Path=Value}">
+            <TextBlock.LayoutTransform>
+                <RotateTransform Angle="{Binding ElementName=mySlider, Path=Value}"></RotateTransform>
+            </TextBlock.LayoutTransform>
+            
+        </TextBlock>
+
+        <CheckBox IsChecked="{Binding IsVisible}" Content="Esempio"></CheckBox>
+        <CheckBox IsChecked="{Binding IsVisible, Converter={StaticResource myNegateBooleanConverter}}" Content="Esempio 2"></CheckBox>
+        <Label Content="{Binding TemperatureC}"></Label>
+        <Label Content="{Binding TemperatureC}"></Label>
+        
+        -->
+
+        <ListBox ItemsSource="{Binding Employees}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Foreground="DarkOrange" Text="{Binding Id}"></TextBlock>
+                        <TextBlock Foreground="Blue" Text="{Binding Name}"></TextBlock>
+                        <TextBlock Foreground="Blue" Text="{Binding Surname}"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <Button Click="Button_Click_1" Content="Aggiungi Employee"></Button>
+
+        <StackPanel x:Name="employeeForm">
+            <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBox Text="{Binding Surname, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Button Click="StartEdit" Content="Start Edit"></Button>
+                <Button Click="CancelEdit" Content="Cancel Edit"></Button>
+                <Button Click="StopEdit" Content="End Edit"></Button>
+            </StackPanel>
+        </StackPanel>
+        
+        
+        
+        
+
+
+    </StackPanel>
 </Window>
